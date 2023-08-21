@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video.js | HTML5 Video Player</title>
+
+  <!-- Chang URLs to wherever Video.js files will be hosted -->
+  <link href="video-js.css" rel="stylesheet" type="text/css">
+  <link href="splitter/src/touchsplitter.css" rel="stylesheet"/>
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="dist/css/bootstrap-theme.min.css">
+
+  <script src="jquery-1.11.1.min.js"></script>
+  <script src="splitter/src/jquery.touchsplitter.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="dist/js/bootstrap.min.js"></script>
+
+  <!-- video.js must be in the <head> for older IEs to work. -->
+  <script src="video.js"></script>
+  <style type="text/css">
+
+    .video-js {max-width: 100%} /* the usual RWD shebang */
+
+    .video-js {
+        width: auto !important; /* override the plugin's inline dims to let vids scale fluidly */
+        height: auto !important;
+    }
+
+    .video-js video {position: relative !important;}
+    /* The video should expand to force the height of the containing div.
+    One in-flow element is good. As long as everything else in the container
+    div stays `position: absolute` we're okay */
+    .split-me>div{
+      background: #444;
+    }
+    .split-me>div:first-child{
+      background: #555;
+    }
+    .split-me>div:last-child{
+      background: #666;
+    }
+
+    .vjs-progress-control {
+      display: none;
+    }
+
+    .split-me-container {
+      position: absolute;
+      top: 3em;
+      left: 1em;
+      right: 1em;
+      bottom: 1em;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .splitter-bar {
+      background: #333;
+    }
+
+  </style>
+
+  <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
+  <script>
+    videojs.options.flash.swf = "video-js.swf";
+  </script>
+
+
+</head>
+<body>
+  <div class="split-me" style="height:580px;">
+    <div>
+      <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" 
+          poster="http://video-js.zencoder.com/oceans-clip.png"
+          data-setup="{}">
+        <source src="./oceans-clip.mp4" type='video/mp4' />
+        <!-- <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+        <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' /> -->
+        <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+        <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+      </video>
+    </div>
+    <div>
+
+    <div class="col-sm-9" id="showslide">
+
+    </div>
+
+    <div class="col-sm-3" style="height:400px; overflow:auto; padding:0;">
+      <img src="slide1.jpg" id="slide1" class="slidehide" style="display:none; width:100%" data-time="1">
+      <img src="slide2.jpg" id="slide2" class="slidehide" style="display:none; width:100%" data-time="12">
+      <img src="slide3.jpg" id="slide3" class="slidehide" style="display:none; width:100%" data-time="14">
+      <img src="slide4.jpg" id="slide4" class="slidehide" style="display:none; width:100%" data-time="16">
+    </div>
+
+
+    </div>
+  </div>
+
+<script type="text/javascript">
+  var myPlayer = videojs('example_video_1');
+  $('.slidehide').click(function(event) {
+    /* Act on the event */
+    $('#showslide').html($(this).clone());
+    myPlayer.currentTime($(this).attr('data-time'));
+  });
+  myPlayer.on('timeupdate',function(){
+    //console.log(myPlayer.currentTime());
+    if(myPlayer.currentTime() > 1){
+      if($('#slide1').css('display')=='none'){
+        //$('#slide1').css('display','inline');
+        $('#slide1').show('slow', function() {
+          $('#showslide').html($('#slide1').clone());
+          // $.post('http://www.google.com', {}, function(data, textStatus, xhr) {
+          //   /*optional stuff to do after success */
+          // });
+        });
+      }
+    }
+    if(myPlayer.currentTime() > 12){
+      if($('#slide2').css('display')=='none'){
+        //$('#slide1').css('display','inline');
+        $('#slide2').show('slow', function() {
+          $('#showslide').html($('#slide2').clone());
+          // $.post('http://www.google.com', {}, function(data, textStatus, xhr) {
+          //   /*optional stuff to do after success */
+          // });
+        });
+      }
+    }
+    if(myPlayer.currentTime() > 14){
+      if($('#slide3').css('display')=='none'){
+        //$('#slide1').css('display','inline');
+        $('#slide3').show('slow', function() {
+          $('#showslide').html($('#slide3').clone());
+          // $.post('http://www.google.com', {}, function(data, textStatus, xhr) {
+          //   /*optional stuff to do after success */
+          // });
+        });
+      }
+    }
+    if(myPlayer.currentTime() > 16){
+      if($('#slide4').css('display')=='none'){
+        //$('#slide1').css('display','inline');
+        $('#slide4').show('slow', function() {
+          $('#showslide').html($('#slide4').clone());
+          // $.post('http://www.google.com', {}, function(data, textStatus, xhr) {
+          //   /*optional stuff to do after success */
+          // });
+        });
+      }
+    }
+  });
+
+(function(){
+  var resizeVideoJs = function(player, aspectRatio){
+    // Get the parent element's actual width
+    var width = document.getElementById(player.id).parentElement.offsetWidth;
+    // Set width to fill parent element, Set height
+    player.width(width).height( width * aspectRatio );    
+  }
+
+  // Get all the videos!
+  var videos = document.getElementsByTagName('video'); 
+  
+  // Loop through the videos
+  for(i=0;i<videos.length;i++) {
+    
+    // Stash the video
+    var video = videos[i];
+    
+    // Check for VideoJs
+    if(video.className.indexOf('video-js') > -1) { 
+      
+      // When player is ready...
+      _V_(video.id).ready(function(){
+    
+        // Stash the player object
+        var player = this;
+        // Create an aspect ratio
+        var aspectRatio = player.height()/player.width();  
+      
+        // Apply the resizer
+        resizeVideoJs(player, aspectRatio); 
+  
+        // Add/Attach the event on resize
+        if (window.addEventListener) {
+          window.addEventListener('resize', function(){
+            resizeVideoJs(player, aspectRatio);
+          }, false); 
+        } else if (window.attachEvent)  {
+          window.attachEvent('onresize', function(){
+            resizeVideoJs(player, aspectRatio);
+          });
+        }
+      });
+    }
+  }
+})();
+
+    splitter = $('.split-me').touchSplit({leftMin:300, rightMin:300, thickness: "10px", dock:"right"})
+</script>
+</body>
+</html>

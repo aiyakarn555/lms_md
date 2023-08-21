@@ -1,0 +1,49 @@
+.one, .two, .three, .four, .five, .six{
+    position:absolute;
+	margin-top:-10px;
+	z-index:1;
+	height:30px;
+	width:30px;
+	border-radius:25px;
+	
+}
+.one{
+	left:14.28571428571429%;
+}
+.two{
+	left:28.57142857142857%;
+}
+.three{
+	left:42.85714285714287%;
+}
+.four{
+	left:57.14285714285716%;
+}
+.five{
+	left:71.42857142857145%;
+}
+.six{
+	left:85.71428571428574%;
+}
+.progress{
+	height: 12px;
+	background-color: #dddddd;
+}
+.primary-color{
+	background-color:#4989bd;
+}
+.success-color{
+	background-color:#5cb85c;
+}
+.danger-color{
+	background-color:#d9534f;
+}
+.warning-color{
+	background-color:#f0ad4e;
+}
+.info-color{
+	background-color:#5bc0de;
+}
+.no-color{
+	background-color:inherit;
+}

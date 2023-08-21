@@ -1,0 +1,9 @@
+java -jar min.jar cometchat.js > cometchat.min.js
+del cometchat.js
+java -jar min.jar cometchat_lite.js > cometchat_lite.min.js
+del cometchat_lite.js
+del min.jar
+del js.jar
+ren cometchat.min.js cometchat.js
+ren cometchat_lite.min.js cometchat_lite.js
+del generate.bat

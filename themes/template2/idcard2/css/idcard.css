@@ -1,0 +1,213 @@
+
+#video {
+    width: 100%;
+    max-width: 100%;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.img-card-bg{
+    background-color: #fecd22;
+    border-radius: 10px;
+}
+
+.header-img {
+    max-width: 80vw;
+    height: auto;
+}
+
+.btn-list {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 100px;
+}
+
+.suggest-title {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.suggest-list {
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0 15px;
+}
+
+.suggest-list li {
+    margin-bottom: 5px;
+}
+
+.camera-photo {
+    border: 2px dashed #828282;
+    color: #5a6268;
+    font-size: 1.5rem;
+
+    background-color: #e0e0e0;
+    background-image: url("../img/frame-id-2.png");
+    background-size: 45%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+@media (max-width:1180px){
+    .camera-photo {
+        /* height: 200px !important; */
+        background-size: 70%;
+    }
+}
+
+@media (max-width:600px){
+    .camera-photo {
+        /* height: 200px !important; */
+    }
+}
+
+
+
+#takeCameraMobile,#uploadFile{
+    visibility: hidden;
+    display: none;
+}
+
+.camera-started .camera-photo {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: none;
+}
+
+.camera-logo {
+    padding: 2rem 0;
+    visibility: hidden;
+}
+
+
+.camera-logo .icon {
+    font-size: 4rem;
+}
+
+.mobile .take-camera-mobile {
+    display: inline-block;
+}
+
+.mobile .take-camera-desktop {
+    display: none;
+}
+
+.no-mobile .take-camera-mobile {
+    display: none;
+}
+
+.no-mobile .take-camera-desktop {
+    display: inline-block;
+}
+
+#photo {
+    max-width: 100%;
+}
+
+.has-photo #photo {
+    display: inline-block;
+    object-fit: contain;
+    max-height: 300px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.no-photo #photo {
+    display: none;
+}
+
+.has-photo .camera-logo {
+    display: none;
+}
+
+.no-photo .camera-logo {
+    display: block;
+}
+
+#VideoBox {
+    display: none;
+    width: fit-content;
+    margin: auto;
+    position: relative;
+}
+
+#video {
+    display: block;
+}
+
+.id-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/frame-id-2.png");
+    background-size: 90%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.camera-started .camera-logo {
+    display: none;
+}
+
+.camera-started #VideoBox {
+    display: block;
+}
+
+.has-photo #VideoBox {
+    display: none;
+}
+
+#startCameraBtn {
+    display: none;
+}
+
+.has-webcam #startCameraBtn {
+    display: inline-block;
+}
+
+#clearphotoButton {
+    display: none;
+}
+
+.has-photo #clearphotoButton {
+    display: inline-block;
+}
+
+.has-photo #startCameraBtn {
+    display: none;
+}
+
+.has-photo .take-camera-mobile-btn {
+    display: none;
+}
+
+.clear-camera-mobile-btn {
+    display: none;
+}
+
+.has-photo .clear-camera-mobile-btn {
+    display: inline-block;
+}
+
+.confirm-btn {
+    display: none;
+}
+
+.has-photo .confirm-btn {
+    display: inline-block;
+}
+
+.font-size-20{
+    font-size: 20px;
+}

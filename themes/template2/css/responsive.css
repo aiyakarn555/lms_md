@@ -1,0 +1,96 @@
+@media only screen and (max-width: 1239.98px) {
+  .main-header .nav>li>a{
+    padding: 1.6rem 2rem !important;
+  }
+
+}
+
+@media only screen and (max-width: 1200px) {
+  .course-progress .btn-success{
+    font-size: 14px;
+    white-space: inherit;
+  }
+  .btn-plan{
+    width: 130px !important;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .box-search {
+    float: right;
+  }
+  .main-header .sidebar-left{
+    width: 280px;
+  }
+  .main-content {
+    margin-left: 280px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .img-footer-left {
+    display: none;
+  }
+
+  .img-footer-right {
+    display: none;
+  }
+  .facelogin .face-check{
+    height: 250px !important;
+    top: 100px !important; 
+  }
+  .container-main{
+    margin: 3rem 1.5rem;
+    padding: 1rem 1rem 2.4rem 1rem;
+  }
+  .title__course {
+    max-width: 445px;
+  }
+  
+  .list__course {
+    max-width: 320px;
+  }
+  
+  .course-active h3{
+    font-size: 18px;
+  }
+ 
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .btn-login-index .d-none,.btn-register-index .d-none{
+    display: none;
+  }
+  .m-login-face{
+    margin: 0 !important;
+  }
+  .container-main{
+    margin: 3rem 1rem;
+    padding: 1rem 1rem 2.4rem 1rem
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .facelogin .face-check{
+    height: 200px !important;
+    top: 90px !important; 
+  }
+}
+
+
+@media only screen and (max-width: 360px) {
+  .facelogin .face-check{
+    height: 200px !important;
+    top: 90px !important; 
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .facelogin .face-check{
+    height: 200px !important;
+    top: 90px !important; 
+  }
+}
+
+
