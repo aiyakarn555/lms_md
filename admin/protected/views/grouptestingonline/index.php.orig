@@ -1,0 +1,248 @@
+
+<?php
+$titleName = 'ระบบชุดข้อสอบบทเรียนออนไลน์';
+$formNameModel = 'Grouptesting';
+
+$this->breadcrumbs=array($titleName);
+Yii::app()->clientScript->registerScript('search', "
+	$('#SearchFormAjax').submit(function(){
+	    $.fn.yiiGridView.update('$formNameModel-grid', {
+	        data: $(this).serialize()
+	    });
+	    return false;
+	});
+");
+
+Yii::app()->clientScript->registerScript('updateGridView', <<<EOD
+	$.updateGridView = function(gridID, name, value) {
+	    $("#"+gridID+" input[name*="+name+"], #"+gridID+" select[name*="+name+"]").val(value);
+	    $.fn.yiiGridView.update(gridID, {data: $.param(
+	        $("#"+gridID+" input, #"+gridID+" .filters select")
+	    )});
+	}
+	$.appendFilter = function(name, varName) {
+	    var val = eval("$."+varName);
+	    $("#$formNameModel-grid").append('<input type="hidden" name="'+name+'" value="">');
+	}
+	$.appendFilter("Grouptesting[news_per_page]", "news_per_page");
+EOD
+, CClientScript::POS_READY);
+?>
+<div class="innerLR">
+<<<<<<< local
+    <?php $this->widget('AdvanceSearchForm', array(
+        'data'=>$model,
+        'route' => $this->route,
+        'attributes'=>array(
+            array('name'=>'lesson_search','type'=>'text'),
+            array('name'=>'group_title','type'=>'text'),
+        ),
+    ));?>
+    <div class="widget" style="margin-top: -1px;">
+        <div class="widget-head">
+            <h4 class="heading glyphicons show_thumbnails_with_lines"><i></i> <?php echo $titleName;?></h4>
+        </div>
+        <div class="widget-body">
+            <div class="separator bottom form-inline small">
+                <span class="pull-right">
+                    <label class="strong">แสดงแถว:</label>
+                    <?php echo $this->listPageShow($formNameModel);?>
+                </span>
+            </div>
+            <div class="clear-div"></div>
+            <div class="overflow-table">
+                <?php $this->widget('AGridView', array(
+                    'id'=>$formNameModel.'-grid',
+                    'dataProvider'=>$model->grouptestingcheck()->search(),
+                    'filter'=>$model,
+                    'selectableRows' => 2,
+                    'htmlOptions' => array(
+                        'style'=> "margin-top: -1px;",
+                    ),
+                    'afterAjaxUpdate'=>'function(id, data){
+                        $.appendFilter("Grouptesting[news_per_page]");
+                        InitialSortTable();
+                    }',
+                    'columns'=>array(
+                        array(
+                            'visible'=>Controller::DeleteAll(
+                                array("Grouptesting.*", "Grouptesting.Delete", "Grouptesting.MultiDelete")
+                            ),
+                            'class'=>'CCheckBoxColumn',
+                            'id'=>'chk',
+                        ),
+                        array(
+                            'name'=>'lesson_id',
+                            'value'=>'$data->lesson->title',
+                            'filter'=>CHtml::activeTextField($model,'lesson_search'),
+                            'htmlOptions' => array(
+                               'style' => 'width:230px',
+                            ),
+                        ),
+                        array(
+                            'name'=>'group_title',
+                            'type'=>'html',
+                            'value'=>'UHtml::markSearch($data,"group_title")',
+                        ),
+                        array(
+                            'header'=>'จำนวนข้อ',
+                            'value'=>'$data->QuesCount',
+                            'htmlOptions' => array(
+                               'style' => 'width:65px;text-align:center',
+                            ),
+                        ),
+                        array(
+                          'value'=>'CHtml::button("เพิ่มข้อสอบ Pre-Test",  array("class" => "btn btn-primary btn-icon" ,"submit" => Yii::app()->createUrl("question/create", array("id" => $data->group_id, "test_type" => "pretest"))))',
+                          'type'=>'raw',
+                          'htmlOptions'=>array('width'=>'40px'),
+                        ),
+                        array(
+                          'value'=>'CHtml::button("เพิ่มข้อสอบ Post-Test",  array("class" => "btn btn-primary btn-icon" ,"submit" => Yii::app()->createUrl("question/create", array("id" => $data->group_id, "test_type" => "posttest"))))',
+                          'type'=>'raw',
+                          'htmlOptions'=>array('width'=>'40px'),
+                        ),
+                        array(
+                          'value'=>'CHtml::button("จัดการข้อสอบ Pre-Test",  array("class" => "btn btn-primary btn-icon" ,"submit" => Yii::app()->createUrl("question/index", array("id" => $data->group_id, "test_type" => "pretest"))))',
+                          'type'=>'raw',
+                          'htmlOptions'=>array('width'=>'40px'),
+                        ),
+                        array(
+                          'value'=>'CHtml::button("จัดการข้อสอบ Post-Test",  array("class" => "btn btn-primary btn-icon" ,"submit" => Yii::app()->createUrl("question/index", array("id" => $data->group_id, "test_type" => "posttest"))))',
+                          'type'=>'raw',
+                          'htmlOptions'=>array('width'=>'40px'),
+                        ),
+                        array(
+                            'class'=>'AButtonColumn',
+                            'visible'=>Controller::PButton(
+                                array("Grouptesting.*", "Grouptesting.View", "Grouptesting.Update", "Grouptesting.Delete")
+                            ),
+                            'buttons' => array(
+                                'view'=> array(
+                                    'visible'=>'Controller::PButton( array("Grouptesting.*", "Grouptesting.View") )'
+                                ),
+                                'update'=> array(
+                                    'visible'=>'Controller::PButton( array("Grouptesting.*", "Grouptesting.Update") )'
+                                ),
+                                'delete'=> array(
+                                    'visible'=>'Controller::PButton( array("Grouptesting.*", "Grouptesting.Delete") )'
+                                ),
+                            ),
+                        ),
+                    ),
+                )); ?>
+            </div>
+        </div>
+    </div>
+=======
+	<?php $this->widget('AdvanceSearchForm', array(
+		'data'=>$model,
+		'route' => $this->route,
+		'attributes'=>array(
+			array('name'=>'lesson_search','type'=>'text'),
+			array('name'=>'group_title','type'=>'text'),
+		),
+	));?>
+	<div class="widget" style="margin-top: -1px;">
+		<div class="widget-head">
+			<h4 class="heading glyphicons show_thumbnails_with_lines"><i></i> <?php echo $titleName;?></h4>
+		</div>
+		<div class="widget-body">
+			<div class="separator bottom form-inline small">
+				<span class="pull-right">
+					<label class="strong">แสดงแถว:</label>
+					<?php echo $this->listPageShow($formNameModel);?>
+				</span>	
+			</div>
+			<div class="clear-div"></div>
+			<div class="overflow-table">
+				<?php $this->widget('AGridView', array(
+					'id'=>$formNameModel.'-grid',
+					'dataProvider'=>$model->grouptestingcheck()->search(),
+					'filter'=>$model,
+					'selectableRows' => 2,	
+					'htmlOptions' => array(
+						'style'=> "margin-top: -1px;",
+					),
+					'afterAjaxUpdate'=>'function(id, data){
+						$.appendFilter("Grouptesting[news_per_page]");
+						InitialSortTable();	
+					}',
+					'columns'=>array(
+						array(
+							'visible'=>Controller::DeleteAll(
+								array("Grouptesting.*", "Grouptesting.Delete", "Grouptesting.MultiDelete")
+							),
+							'class'=>'CCheckBoxColumn',
+							'id'=>'chk',
+						),
+						array(
+							'name'=>'lesson_id',
+							'value'=>'$data->lesson->title',
+							'filter'=>CHtml::activeTextField($model,'lesson_search'),
+			                'htmlOptions' => array(
+			                   'style' => 'width:230px',
+			                ),  
+						),
+						array(
+							'name'=>'group_title',
+							'type'=>'html',
+							'value'=>'UHtml::markSearch($data,"group_title")',
+						),
+						array(
+							'header'=>'จำนวนข้อ',
+							'value'=>'$data->QuesCount',
+			                'htmlOptions' => array(
+			                   'style' => 'width:65px;text-align:center',
+			                ),  
+						),
+					    array(
+					      'value'=>'CHtml::button("เพิ่มข้อสอบ",  array("class" => "btn btn-primary btn-icon" ,"submit" => Yii::app()->createUrl("question/create", array("id"=>$data->group_id))))',
+					      'type'=>'raw',
+					      'htmlOptions'=>array('width'=>'40px'),
+					    ),
+					    array(
+					      'value'=>'CHtml::button("จัดการข้อสอบ",  array("class" => "btn btn-primary btn-icon" ,"submit" => Yii::app()->createUrl("question/index", array("id"=>$data->group_id))))',
+					      'type'=>'raw',
+					      'htmlOptions'=>array('width'=>'40px'),
+					    ),
+						array(            
+							'class'=>'AButtonColumn',
+							'visible'=>Controller::PButton( 
+								array("Grouptesting.*", "Grouptesting.View", "Grouptesting.Update", "Grouptesting.Delete") 
+							),
+							'buttons' => array(
+								'view'=> array( 
+									'visible'=>'Controller::PButton( array("Grouptesting.*", "Grouptesting.View") )' 
+								),
+								'update'=> array( 
+									'visible'=>'Controller::PButton( array("Grouptesting.*", "Grouptesting.Update") )' 
+								),
+								'delete'=> array( 
+									'visible'=>'Controller::PButton( array("Grouptesting.*", "Grouptesting.Delete") )' 
+								),
+							),
+						),
+					),
+				)); ?>
+			</div>
+		</div>
+	</div>
+>>>>>>> other
+
+	<?php if( Controller::DeleteAll(array("Grouptesting.*", "Grouptesting.Delete", "Grouptesting.MultiDelete")) ) : ?>
+		<!-- Options -->
+		<div class="separator top form-inline small">
+			<!-- With selected actions -->
+			<div class="buttons pull-left">
+				<?php echo CHtml::link("<i></i> ลบข้อมูลทั้งหมด","#",array(
+					"class"=>"btn btn-primary btn-icon glyphicons circle_minus",
+					"onclick"=>"return multipleDeleteNews('".$this->createUrl('//'.$formNameModel.'/MultiDelete')."','$formNameModel-grid');"
+				)); ?>
+			</div>
+			<!-- // With selected actions END -->
+			<div class="clearfix"></div>
+		</div>
+		<!-- // Options END -->
+	<?php endif; ?>
+
+</div>
